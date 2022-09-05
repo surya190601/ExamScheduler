@@ -9,15 +9,61 @@ import InputComponent from "../Components/InputComponent";
 import TextComponent from "../Components/TextComponent";
 import Button from "../Components/Button";
 
-import {FormData} from "../Common/data/FormData";
+import { FormData } from "../Common/data/FormData";
 
 const CreateSchedule = () => {
-    //role.map(role => role.displayText)
-    let branch = []; 
-    FormData.branchanddep.map((item,i) =>(branch.push(item.branch)))
-console.log(branch);
-  const [selectedOption, setSelectedOption] = useState(Object.values(branch));
+  // branches
+  const [branch, setBranch] = useState(FormData?.branchanddep || []);
+  const [selectedBranch, setSelectedBranch] = useState(branch[0] || {});
+
+  // deps
+  const [deps, setdeps] = useState(selectedBranch?.deps || []);
+  const [selectedDep, setSelectedDep] = useState("--Select--");
+
+  //ExamType
+  const [ExamType, setExamType] = useState([]);
+  const [selectedExamType, setSelectedExamType] = useState("--Select--");
+
+  //Semester
+  const [sem, setsem] = useState("");
+  const handleChangeInSem = (event) => {
+    setsem(event.target.value);
+    setExamType(FormData?.[selectedDep]?.[event.target.value-1]);
+  };
+
+  //Subjects
+
+
+
+  const [selectedOption, setSelectedOption] = useState();
+
+  const setBranchs = (option) => {
+    setSelectedBranch(option);
+    setdeps(option?.deps);
+    setSelectedDep(option?.deps?.[0]);
+  };
+
+  const setDepartmentDetails = (option) => {
+    setSelectedDep(option);
+    setExamType(FormData?.[option]?.[0]);
+    setSelectedExamType(FormData?.[option]?.[0]?.[0]?.ExamType);
+  };
+
+  const setexamTypes = (option) => {
+    console.log(sem);
+    setSelectedExamType(option.ExamType);
+  };
+
   return (
+    // <>
+    //   <CustomDropDown
+    //     options={DROPDOWN_BRANCH_OPTIONS}
+    //     selectedOption={selectedOption}
+    //     setSelectedOption={setSelectedOption}
+    //     label="ExamType"
+    //   />
+    // </>
+
     <>
       <StyledMainContainer>
         <div
@@ -43,30 +89,36 @@ console.log(branch);
           >
             <div style={{ marginRight: "2.689%", width: "33.3%" }}>
               <CustomDropDown
-                options={Object.values(branch)}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
+                options={branch}
+                selectedOption={selectedBranch?.branch}
+                setSelectedOption={setBranchs}
                 label="Branch"
+                optionObjectValue="branch"
               />
             </div>
             <div style={{ marginRight: "2.69%", width: "33.3%" }}>
               <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
+                options={deps}
+                selectedOption={selectedDep}
+                setSelectedOption={setDepartmentDetails}
                 label="Department"
               />
             </div>
             <div style={{ width: "33.3%" }}>
-              <InputComponent label="Semester" />
+              <InputComponent
+                label="Semester"
+                onChange={handleChangeInSem}
+                value={sem}
+              />
             </div>
           </div>
           <div style={{ marginBottom: "2.689%" }}>
             <CustomDropDown
-              options={DROPDOWN_BRANCH_OPTIONS}
-              selectedOption={selectedOption}
-              setSelectedOption={setSelectedOption}
+              options={ExamType}
+              selectedOption={selectedExamType}
+              setSelectedOption={setexamTypes}
               label="ExamType"
+              optionObjectValue="ExamType"
             />
           </div>
           <div>
@@ -120,230 +172,42 @@ console.log(branch);
             <div style={{ marginRight: "2.69%", width: "33.3%" }}>
               <InputComponent label="Subjects" />
             </div>
-            <div style={{width: "33.3%" }}>
+            <div style={{ width: "33.3%" }}>
               <InputComponent label="Labs" />
             </div>
           </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Subject1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Measurement and Instrumentation"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Subject1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Electrical Machines"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Subject1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Power Systems"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Subject1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Microcontrollers"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Subject1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Control Systems"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div>
-            <StyledInputText3 label={"Lab"} />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Lab 1"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Control Systems"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              marginBottom: "2.689%",
-            }}
-          >
-            <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
-              <CustomDropDown
-                options={DROPDOWN_BRANCH_OPTIONS}
-                selectedOption={selectedOption}
-                setSelectedOption={setSelectedOption}
-                label="Lab 2"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "36.756%"}}>
-                <StyledSubjectLabel label = "Control Systems"/>
-            </div>
-            <div style={{marginRight: "1.6125%", width: "23.3%"}}>
-            <InputComponent
-                label="Date"
-                type="date"
-              />
-            </div>
-            <div style={{marginRight: "1.6125%", width: "6.1%"}}>
-                <FNANButton label ="FN"/>
-            </div>
-            <div style={{width: "6.1%"}}>
-                <FNANButton label ="AN"/>
-            </div>
-          </div>
+          {new Array(5).fill('element').map((item,index) => {
+            return (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  marginBottom: "2.689%",
+                }}
+              >
+                <div style={{ marginRight: "1.6125%", width: "16.13%" }}>
+                  <CustomDropDown
+                    options={DROPDOWN_BRANCH_OPTIONS}
+                    selectedOption={selectedOption}
+                    setSelectedOption={setSelectedOption}
+                    label={`Subject${1+index}`}
+                  />
+                </div>
+                <div style={{ marginRight: "1.6125%", width: "36.756%" }}>
+                  <StyledSubjectLabel label="Measurement and Instrumentation" />
+                </div>
+                <div style={{ marginRight: "1.6125%", width: "23.3%" }}>
+                  <InputComponent label="Date" type="date" />
+                </div>
+                <div style={{ marginRight: "1.6125%", width: "6.1%" }}>
+                  <FNANButton label="FN" />
+                </div>
+                <div style={{ width: "6.1%" }}>
+                  <FNANButton label="AN" />
+                </div>
+              </div>
+            );
+          })}
         </StyledWrapper>
         <div
           style={{
@@ -436,7 +300,7 @@ const StyledSubjectLabel = styled(TextComponent)`
   line-height: 22px;
   color: #aba9ae;
   padding: 20px 0px 20px 12.8px;
-  margin-top:34px;
+  margin-top: 34px;
 `;
 
 const FNANButton = styled(Button)`
@@ -447,10 +311,10 @@ const FNANButton = styled(Button)`
   line-height: 22px;
   padding: 21px 22px;
   color: #5375e2;
-  margin-top:30px;
+  margin-top: 30px;
 `;
 const StyledInputText3 = styled(StyledInputText1)`
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 `;
 const SaveButton = styled(Button)`
   border: 1px solid #5375e2;
@@ -459,7 +323,7 @@ const SaveButton = styled(Button)`
   font-size: 16px;
   line-height: 22px;
   padding: 10.5px 49px;
-  color: #FFFFFF;
-  margin-top:56px;
-  background: #5375e2
+  color: #ffffff;
+  margin-top: 56px;
+  background: #5375e2;
 `;

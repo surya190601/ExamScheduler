@@ -7,9 +7,10 @@ const CustomDropDown = (props) => {
     label,
     selectedOption,
     setSelectedOption,
-    options
+    options = [],
+    optionObjectValue = null,
   } = props;
-
+  //console.log(options, selectedOption);
   const [isOptionsVisible, setIsOptionsVisible] = useState(false);
 
   const handleSelected = (option) => {
@@ -19,15 +20,13 @@ const CustomDropDown = (props) => {
 
   return (
     <>
-    {label && <StyledDropDownText>{label}</StyledDropDownText>}
+      {label && <StyledDropDownText>{label}</StyledDropDownText>}
       <StyledDropDown>
         <StyledDropDownComponent>
           <StyledSelectedOptionWrapper
             onClick={() => setIsOptionsVisible(!isOptionsVisible)}
           >
-            <StyledDropDownLabel>
-              {selectedOption}
-            </StyledDropDownLabel>
+            <StyledDropDownLabel>{selectedOption}</StyledDropDownLabel>
             {isOptionsVisible ? (
               <svg
                 width="13"
@@ -59,9 +58,11 @@ const CustomDropDown = (props) => {
           {isOptionsVisible && (
             <StyledDropDownOptions>
               {options.length > 0 &&
-                options.map((option) => (
+                options?.map((option) => (
                   <StyledDropDownOption onClick={() => handleSelected(option)}>
-                    {option}
+                    {optionObjectValue !== null
+                      ? option[optionObjectValue]
+                      : option}
                   </StyledDropDownOption>
                 ))}
             </StyledDropDownOptions>
@@ -90,7 +91,7 @@ const StyledDropDownLabel = styled.div`
   font-weight: 400;
   font-size: 16px;
   line-height: 116%;
-  width:100%;
+  width: 100%;
 `;
 
 const StyledDropDownComponent = styled.div`

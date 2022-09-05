@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 const InputComponent = (props) => {
-  const {className,type = "text", value, placeholder, label } = props;
+  const {className,type = "text", value, placeholder, label ,onChange,} = props;
   return (
     <>
       {label && <StyledInputLabel>{label}</StyledInputLabel>}
-      {type === "text" || type === "date" ? <StyledInput type={type} /> : <input type={type} value={value} placeholder={placeholder} className = {className}/>}
+      {type === "text" || type === "date" ? <StyledInput type={type} onChange = {onChange} value = {value}/> : <input type={type} value={value} placeholder={placeholder} className = {className}/>}
     </>
   );
 };
