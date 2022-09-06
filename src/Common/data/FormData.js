@@ -1,162 +1,276 @@
 export const FormData = {
-  branchanddep: [
-    {
-      branch: "B.E",
-      deps: ["ECE", "EEE", "MECH"],
-    },
-    {
-      branch: "B.Tech",
-      deps: ["CSE", "IT"],
-    },
-  ],
-  EEE: [
-    [
-      {
-        ExamType: "Semester",
-        ExamDuration: "3 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
+    branchanddep: [
+        {
+            branch: 'B.E',
+            deps: ['ECE', 'EEE', 'MECH'],
         },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
+        {
+            branch: 'B.Tech',
+            deps: ['CSE', 'IT'],
         },
-      },
-      {
-        ExamType: "Internal",
-        ExamDuration: "2 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
-        },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
-        },
-      },
-      {
-        ExamType: "Model",
-        ExamDuration: "3 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
-        },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
-        },
-      },
     ],
-    [
-      {
-        ExamType: "Semester",
-        ExamDuration: "3 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
-        },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
-        },
-      },
-      {
-        ExamType: "Internal",
-        ExamDuration: "2 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
-        },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
-        },
-      },
-      {
-        ExamType: "Model",
-        ExamDuration: "3 Hours",
-        subjects: {
-          subjectcode: [
-            "19QSA011",
-            "19HSM002",
-            "19ASR008",
-            "19CTR105",
-            "19MNS202",
-          ],
-          subjectname: [
-            "Measurement and Instrumentation",
-            "Electrical Machines",
-            "Power Systems",
-            "Microcontrollers",
-            "Control Systems",
-          ],
-        },
-        labs: {
-          labcode: ["19QSA011", "19HSM002"],
-          labname: ["Measurement and Instrumentation", "Electrical Machines"],
-        },
-      },
+    EEE: [
+        [
+            {
+                ExamType: 'Semester',
+                ExamDuration: '3 Hours',
+                subjects: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                        date: '',
+                        isNoon: '',
+                    },
+                    {
+                        code: '19HSM002',
+                        name: 'Electrical Machines',
+                        isNoon: '',
+                        date: '',
+                    },
+                    {
+                        code: '19ASR008',
+                        name: 'Power Systems',
+                        isNoon: '',
+                        date: '',
+                    },
+                    {
+                        code: '19CTR105',
+                        name: 'Microcontrollers',
+                        isNoon: '',
+                        date: '',
+                    },
+                    {
+                        code: '19MNS202',
+                        name: 'Control Systems',
+                        isNoon: '',
+                        date: '',
+                    },
+                ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+            {
+                ExamType: 'Model',
+                ExamDuration: '3 Hours',
+                  subjects: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                        date: '',
+                        isNoon: false,
+                    },
+                    {
+                        code: '19HSM002',
+                        name: 'Electrical Machines',
+                        isNoon: false,
+                        date: '',
+                    },
+                    {
+                        code: '19ASR008',
+                        name: 'Power Systems',
+                        isNoon: false,
+                        date: '',
+                    },
+                    {
+                        code: '19CTR105',
+                        name: 'Microcontrollers',
+                        isNoon: false,
+                        date: '',
+                    },
+                    {
+                        code: '19MNS202',
+                        name: 'Control Systems',
+                        isNoon: false,
+                        date: '',
+                    },
+                ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+            {
+                ExamType: 'Internal',
+                ExamDuration: '3 Hours',
+                subjects: [
+                  {
+                      code: '19QSA011',
+                      name: 'Measurement and Instrumentation',
+                      date: '',
+                      isNoon: '',
+                  },
+                  {
+                      code: '19HSM002',
+                      name: 'Electrical Machines',
+                      isNoon: '',
+                      date: '',
+                  },
+                  {
+                      code: '19ASR008',
+                      name: 'Power Systems',
+                      isNoon: '',
+                      date: '',
+                  },
+                  {
+                      code: '19CTR105',
+                      name: 'Microcontrollers',
+                      isNoon: '',
+                      date: '',
+                  },
+                  {
+                      code: '19MNS202',
+                      name: 'Control Systems',
+                      isNoon: '',
+                      date: '',
+                  },
+              ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+        ],
+        [
+            {
+                ExamType: 'Semester',
+                ExamDuration: '3 Hours',
+                subjects: [
+                  {
+                      code: '19QSA011',
+                      name: 'Measurement and Instrumentation',
+                      date: '',
+                      isNoon: '',
+                  },
+                  {
+                      code: '19HSM002',
+                      name: 'Electrical Machines',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19ASR008',
+                      name: 'Power Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19CTR105',
+                      name: 'Microcontrollers',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19MNS202',
+                      name: 'Control Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+              ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+            {
+                ExamType: 'Model',
+                ExamDuration: '3 Hours',
+                subjects: [
+                  {
+                      code: '19QSA011',
+                      name: 'Measurement and Instrumentation',
+                      date: '',
+                      isNoon: false,
+                  },
+                  {
+                      code: '19HSM002',
+                      name: 'Electrical Machines',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19ASR008',
+                      name: 'Power Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19CTR105',
+                      name: 'Microcontrollers',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19MNS202',
+                      name: 'Control Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+              ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+            {
+                ExamType: 'Internal',
+                ExamDuration: '3 Hours',
+                subjects: [
+                  {
+                      code: '19QSA011',
+                      name: 'Measurement and Instrumentation',
+                      date: '',
+                      isNoon: false,
+                  },
+                  {
+                      code: '19HSM002',
+                      name: 'Electrical Machines',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19ASR008',
+                      name: 'Power Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19CTR105',
+                      name: 'Microcontrollers',
+                      isNoon: false,
+                      date: '',
+                  },
+                  {
+                      code: '19MNS202',
+                      name: 'Control Systems',
+                      isNoon: false,
+                      date: '',
+                  },
+              ],
+                labs: [
+                    {
+                        code: '19QSA011',
+                        name: 'Measurement and Instrumentation',
+                    },
+                    { code: '19HSM002', name: 'Electrical Machines' },
+                ],
+            },
+        ],
     ],
-  ],
-};
+}
