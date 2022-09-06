@@ -41,7 +41,7 @@ const CreateSchedule = () => {
     const [ExamType, setExamType] = useState([])
     const [selectedExamType, setSelectedExamType] = useState('--Select--')
 
-    const [dateSub, setDateSub] = useState('')
+    const [labDetails, setLabDetails] = useState([])
 
     const [subjectDetails, setSubjectDetails] = useState([])
 
@@ -55,9 +55,9 @@ const CreateSchedule = () => {
 
     //Subject Code and SubjectName
     //Subjects
-    // console.log(FormData?.[selectedDep]?.[sem-1]);
-
-    const [selectedOption, setSelectedOption] = useState()
+    // console.log(FormData?.[selectedDep]?.[sem-1])
+    let AMPMOption = ['AM', 'PM']
+    const [selectedAmPmDropDown, setSelectedAmPmDropDown] = useState(AMPMOption[0])
 
     const setBranchs = (option) => {
         setSelectedBranch(option)
@@ -75,9 +75,8 @@ const CreateSchedule = () => {
     const setexamTypes = (option) => {
         console.log(sem)
         setSelectedExamType(option.ExamType)
-        setSubjectDetails(
-            FormData?.[selectedDep]?.[sem-1]?.[0]?.subjects
-        )
+        setSubjectDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.subjects)
+        setLabDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.labs)
     }
     const setDateHanlde = (option) => {}
     return (
@@ -151,10 +150,23 @@ const CreateSchedule = () => {
                         <StyledInputText2 label="FN" />
                         <StyledInput2 type="number" />
                         <StyledInput2 type="number" />
-                        {/* <StyledInput2 placeholder="AM" /> */}
+                        <div style={{ marginRight: '30px', width: '7%' }}>
+                            <CustomDropDown
+                                options={AMPMOption}
+                                selectedOption={selectedAmPmDropDown}
+                                setSelectedOption={setSelectedAmPmDropDown}
+                            />
+                        </div>
                         <StyledInputText2_1 label="to" />
                         <StyledInput2 type="number" />
                         <StyledInput2 type="number" />
+                        <div style={{ marginRight: '30px', width: '7%' }}>
+                            <CustomDropDown
+                                options={AMPMOption}
+                                selectedOption={selectedAmPmDropDown}
+                                setSelectedOption={setSelectedAmPmDropDown}
+                            />
+                        </div>
                         {/* <StyledInput2 placeholder="PM" /> */}
                         <StyledInputText2_2 label="3 hours" />
                         <StyledCheckBox type="checkbox" value="FN" />
@@ -170,11 +182,24 @@ const CreateSchedule = () => {
                         <StyledInputText2 label="AN" />
                         <StyledInput2 type="number" />
                         <StyledInput2 type="number" />
+                        <div style={{ marginRight: '30px', width: '7%' }}>
+                            <CustomDropDown
+                                options={AMPMOption}
+                                selectedOption={selectedAmPmDropDown}
+                                setSelectedOption={setSelectedAmPmDropDown}
+                            />
+                        </div>
                         {/* <StyledInput2 placeholder="AM" /> */}
                         <StyledInputText2_1 label="to" />
                         <StyledInput2 type="number" />
                         <StyledInput2 type="number" />
-                        {/* <StyledInput2 placeholder="PM" /> */}
+                        <div style={{ marginRight: '30px', width: '7%' }}>
+                            <CustomDropDown
+                                options={AMPMOption}
+                                selectedOption={selectedAmPmDropDown}
+                                setSelectedOption={setSelectedAmPmDropDown}
+                            />
+                        </div>
                         <StyledInputText2_2 label="3 hours" />
                         <StyledCheckBox type="checkbox" value="AN" />
                         <StyledInputText2_2 label="Set all for AN" />
@@ -193,13 +218,24 @@ const CreateSchedule = () => {
                             />
                         </div>
                         <div style={{ width: '33.3%' }}>
-                            <InputComponent label="Labs" />
+                            <InputComponent
+                                label="Labs"
+                                value={labDetails.length}
+                            />
                         </div>
                     </div>
                     <SubjectLabComponent
                         details={subjectDetails}
                         setDetails={setSubjectDetails}
-                        label = "Subject"
+                        label="Subject"
+                    />
+                    <div>
+                        <StyledInputText3 label="Labs" />
+                    </div>
+                    <SubjectLabComponent
+                        details={labDetails}
+                        setDetails={setLabDetails}
+                        label="Lab"
                     />
                 </StyledWrapper>
 
@@ -260,7 +296,7 @@ const StyledInput2 = styled(InputComponent)`
     border-radius: 5px;
     padding: 17px 0px 17px 16px;
     margin-right: 30px;
-    max-width: 4.53%;
+    width: 5%;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
