@@ -1,10 +1,9 @@
 import React from "react";
-import styled from "styled-components";
 
 const TextComponent = (props) => {
-  const { className,label,children} = props;
+  const { className,label,children,styleProps={}} = props;
   return (
-    <div className= {className}>
+    <div className= {className} style={styleProps}>
       {label}
       {children}
     </div>

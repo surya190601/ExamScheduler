@@ -1,7 +1,7 @@
 import React from 'react'
-import Footer from '../Layouts/Footer/Footer'
-import Header from '../Layouts/Header/Header' 
-import NoSchedule from '../Layouts/NoSchedule/NoSchedule'
+import Footer from '../Layouts/Footer'
+import Header from '../Layouts/Header' 
+import NoSchedule from '../Layouts/NoSchedule'
 const LandingPage = () => {
   return (
     <>

@@ -1,7 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 const CreateButton = () => {
-  const StyledCreateButton = styled.div`
+  return (
+    <>
+      <StyledCreateButton>
+        <StyledIconButton
+          src="https://i.ibb.co/tzndXDc/Vector.png"
+          alt="Vector"
+          border="0"
+        />
+        <StyledTextButton>Create New</StyledTextButton>
+      </StyledCreateButton>
+    </>
+  );
+};
+
+export default CreateButton;
+
+const StyledCreateButton = styled.div`
     background: #5375e2;
     border: 5px solid #5375e2;
     border-radius: 10px;
@@ -23,18 +39,3 @@ const CreateButton = () => {
   const StyledTextButton = styled.div`
     margin-left: 23px;
   `;
-  return (
-    <>
-      <StyledCreateButton>
-        <StyledIconButton
-          src="https://i.ibb.co/tzndXDc/Vector.png"
-          alt="Vector"
-          border="0"
-        />
-        <StyledTextButton>Create New</StyledTextButton>
-      </StyledCreateButton>
-    </>
-  );
-};
-
-export default CreateButton;

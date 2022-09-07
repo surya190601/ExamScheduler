@@ -6,7 +6,7 @@ const FooterWrapper = styled.footer`
   font-size: 12px;
   line-height: 130%;
   background: #fbfbfb;
-  padding: 0.5% 25.6% 0.5% 33%;
+  padding-left: 20%;
   display: flex;
   flex-direction: row;
   letter-spacing: 0.03em;
@@ -15,7 +15,7 @@ const FooterWrapper = styled.footer`
 `;
 
 const FooterText = styled.p`
-  margin-left: 15%;
+  margin-left: 20%;
   background: #fbfbfb;
 `;
 
