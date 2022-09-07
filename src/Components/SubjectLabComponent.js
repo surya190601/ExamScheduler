@@ -22,7 +22,7 @@ const DropIcon = () => {
 }
 
 const SubjectLabComponent = (props) => {
-  // 
+    //
     const { details, setDetails, label } = props
     const handleChangeDate = (event, index) => {
         let clonedArray = [...details]
@@ -37,12 +37,12 @@ const SubjectLabComponent = (props) => {
         else clonedArray[index].isNoon = false
         setDetails(clonedArray)
     }
+
+    const handleChangeHour = () => {}
+
     return (
         <>
             {details.map((item, index) => {
-                {
-                    console.log('item', item.isNoon)
-                }
                 return (
                     <div
                         style={{
@@ -174,18 +174,6 @@ const SubjectLabComponent = (props) => {
                                 </div>
                             </>
                         )}
-
-                        {/* <div
-                            style={{
-                                marginRight: '1.6125%',
-                                width: '6.1%',
-                            }}
-                        >
-                            <FNANButton label="FN" />
-                        </div>
-                        <div style={{ width: '6.1%' }}>
-                            <FNANButton label="AN" />
-                        </div> */}
                     </div>
                 )
             })}
@@ -215,6 +203,7 @@ const FNANButton = styled(Button)`
     padding: 21px 22px;
     color: #5375e2;
     margin-top: 30px;
+    width:14%
 `
 
 const FNANButtonActive = styled(Button)`

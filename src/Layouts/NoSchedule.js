@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import CreateButton from "../Components/CreateButton";
 import TextComponent from "../Components/TextComponent";
@@ -13,7 +14,9 @@ const NoSchedule = () => {
       < NoScheduleImageText
         label="There are no schedules get started by creating schedules"
       />
+      <Link to = "/CreateSchedulePage" style={{ textDecoration: 'none' }}>
       <CreateButton/>
+      </Link>
     </div>
   );
 };

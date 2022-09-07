@@ -20,6 +20,7 @@ const InputComponent = (props) => {
                     value={value}
                     placeholder={placeholder}
                     className={className}
+                    onChange={onChange}
                     min="0"
                     max="12"
                 />

@@ -4,29 +4,16 @@ import CustomDropDown from '../Components/CustomDropDown'
 import Wrapper from '../Components/Wrapper'
 import { useState } from 'react'
 
-import { DROPDOWN_BRANCH_OPTIONS } from '../Common/data/DropDown'
 import InputComponent from '../Components/InputComponent'
 import TextComponent from '../Components/TextComponent'
 import Button from '../Components/Button'
 
 import { FormData } from '../Common/data/FormData'
 import SubjectLabComponent from '../Components/SubjectLabComponent'
-const DropIcon = () => {
-    return (
-        <svg
-            width="13"
-            height="10"
-            viewBox="0 0 13 10"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                d="M12.0148 1.73389L10.5896 0.0187441L6.04937 5.71184L1.41013 0.14078L0.015455 1.89342L6.07996 9.19192L12.0148 1.73389Z"
-                fill="#1F1F1F"
-            />
-        </svg>
-    )
-}
+import TimeRange from '../Components/TimeRange'
+import CreateSchedulePopUp from './CreateSchedulePopUp'
+import { CreateScheduleData } from '../Common/data/CreateScheduleData'
+import { Link } from 'react-router-dom'
 
 const CreateSchedule = () => {
     // branches
@@ -41,23 +28,40 @@ const CreateSchedule = () => {
     const [ExamType, setExamType] = useState([])
     const [selectedExamType, setSelectedExamType] = useState('--Select--')
 
+    //Labs Details
     const [labDetails, setLabDetails] = useState([])
 
+    //Subject Details
     const [subjectDetails, setSubjectDetails] = useState([])
+
+    // Hours And Minutes Details
+    const [hours, setHour] = useState('')
+    const [minutes, setMinute] = useState('')
+    const [hours1, setHour1] = useState('')
+    const [minutes1, setMinute1] = useState('')
+    const [hours2, setHour2] = useState('')
+    const [minutes2, setMinute2] = useState('')
+    const [hours3, setHour3] = useState('')
+    const [minutes3, setMinute3] = useState('')
 
     //Semester
     const [sem, setsem] = useState('')
     const handleChangeInSem = (event) => {
-        // setSubjectDetails( FormData?.[selectedDep]?.[Number(event.target.value)-1]?.['subjects'])
         setsem(event.target.value)
         setExamType(FormData?.[selectedDep]?.[event.target.value - 1])
     }
 
-    //Subject Code and SubjectName
-    //Subjects
-    // console.log(FormData?.[selectedDep]?.[sem-1])
+    //AMPMOption
     let AMPMOption = ['AM', 'PM']
-    const [selectedAmPmDropDown, setSelectedAmPmDropDown] = useState(AMPMOption[0])
+    const [selectedAmPmDropDown, setSelectedAmPmDropDown] = useState(
+        AMPMOption[0]
+    )
+    const [selectedAmPmDropDown1, setSelectedAmPmDropDown1] = useState(
+        AMPMOption[0]
+    )
+
+    // PopUp
+    const [openPopUp, setOpenPopUp] = useState(false)
 
     const setBranchs = (option) => {
         setSelectedBranch(option)
@@ -73,12 +77,29 @@ const CreateSchedule = () => {
     }
 
     const setexamTypes = (option) => {
-        console.log(sem)
         setSelectedExamType(option.ExamType)
         setSubjectDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.subjects)
         setLabDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.labs)
     }
-    const setDateHanlde = (option) => {}
+
+    const getDateTime = () => {
+        let now = new Date()
+        let year = now.getFullYear()
+        let month = now.getMonth() + 1
+        let day = now.getDate()
+        let hour = now.getHours()
+        let minute = now.getMinutes()
+        let amPm = hour >= 12 ? 'PM' : 'AM';
+
+        month = month.toString().length == 1 ? `0${month}` : `${month}`
+        day = day.toString().length == 1 ? `0${day}` : `${day}`
+        hour = hour % 12;
+        hour = hour ? hour : 12;
+        minute = minute < 10 ? `0${minute}` : `${minute}`;
+        let dateTime = `${day}/${month}/${year} ${hour}:${minute}${amPm}`
+        return dateTime
+    }
+
     return (
         <>
             <StyledMainContainer>
@@ -89,10 +110,12 @@ const CreateSchedule = () => {
                         marginBottom: '20px',
                     }}
                 >
+                    <Link to = "/" style={{ textDecoration: 'none' }}>
                     <StyledArrow
                         src="https://i.ibb.co/RBRPtj0/Vector-Arrow.png"
                         alt="Arrow-Back"
                     />
+                    </Link>
                     <StyledTitle>Create new schedule</StyledTitle>
                 </div>
                 <StyledWrapper>
@@ -140,70 +163,26 @@ const CreateSchedule = () => {
                     <div>
                         <StyledInputText1 label={'Time Range'} />
                     </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            marginBottom: '20px',
-                        }}
-                    >
-                        <StyledInputText2 label="FN" />
-                        <StyledInput2 type="number" />
-                        <StyledInput2 type="number" />
-                        <div style={{ marginRight: '30px', width: '7%' }}>
-                            <CustomDropDown
-                                options={AMPMOption}
-                                selectedOption={selectedAmPmDropDown}
-                                setSelectedOption={setSelectedAmPmDropDown}
-                            />
-                        </div>
-                        <StyledInputText2_1 label="to" />
-                        <StyledInput2 type="number" />
-                        <StyledInput2 type="number" />
-                        <div style={{ marginRight: '30px', width: '7%' }}>
-                            <CustomDropDown
-                                options={AMPMOption}
-                                selectedOption={selectedAmPmDropDown}
-                                setSelectedOption={setSelectedAmPmDropDown}
-                            />
-                        </div>
-                        {/* <StyledInput2 placeholder="PM" /> */}
-                        <StyledInputText2_2 label="3 hours" />
-                        <StyledCheckBox type="checkbox" value="FN" />
-                        <StyledInputText2_2 label="Set all for FN" />
-                    </div>
-                    <div
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'row',
-                            marginBottom: '30px',
-                        }}
-                    >
-                        <StyledInputText2 label="AN" />
-                        <StyledInput2 type="number" />
-                        <StyledInput2 type="number" />
-                        <div style={{ marginRight: '30px', width: '7%' }}>
-                            <CustomDropDown
-                                options={AMPMOption}
-                                selectedOption={selectedAmPmDropDown}
-                                setSelectedOption={setSelectedAmPmDropDown}
-                            />
-                        </div>
-                        {/* <StyledInput2 placeholder="AM" /> */}
-                        <StyledInputText2_1 label="to" />
-                        <StyledInput2 type="number" />
-                        <StyledInput2 type="number" />
-                        <div style={{ marginRight: '30px', width: '7%' }}>
-                            <CustomDropDown
-                                options={AMPMOption}
-                                selectedOption={selectedAmPmDropDown}
-                                setSelectedOption={setSelectedAmPmDropDown}
-                            />
-                        </div>
-                        <StyledInputText2_2 label="3 hours" />
-                        <StyledCheckBox type="checkbox" value="AN" />
-                        <StyledInputText2_2 label="Set all for AN" />
-                    </div>
+                    <TimeRange
+                        AMPMOption={AMPMOption}
+                        selectedAmPmDropDown={selectedAmPmDropDown}
+                        setSelectedAmPmDropDown={setSelectedAmPmDropDown}
+                        label={'FN'}
+                        setHour={setHour}
+                        setMinute={setMinute}
+                        setHour1={setHour1}
+                        setMinute1={setMinute1}
+                    />
+                    <TimeRange
+                        AMPMOption={AMPMOption}
+                        selectedAmPmDropDown={selectedAmPmDropDown1}
+                        setSelectedAmPmDropDown={setSelectedAmPmDropDown1}
+                        label={'AN'}
+                        setHour={setHour2}
+                        setMinute={setMinute2}
+                        setHour1={setHour3}
+                        setMinute1={setMinute3}
+                    />
                     <div
                         style={{
                             display: 'flex',
@@ -246,9 +225,52 @@ const CreateSchedule = () => {
                         justifyContent: 'flex-end',
                     }}
                 >
-                    <SaveButton label="Save" />
-                    <div />
+                    <SaveButton
+                        label="Save"
+                        onClick={() => {
+                            setOpenPopUp(true)
+                            const data = {
+                                branch: selectedBranch.branch,
+                                department: selectedDep,
+                                semester: sem,
+                                examType: selectedExamType,
+                                fnFrom: {
+                                    hour: hours,
+                                    minute: minutes,
+                                    AMOrPM: selectedAmPmDropDown,
+                                },
+                                fnTo: {
+                                    hour: hours1,
+                                    minute: minutes1,
+                                    AMOrPM: selectedAmPmDropDown,
+                                },
+                                anFrom: {
+                                    hour: hours2,
+                                    minute: minutes2,
+                                    AMOrPM: selectedAmPmDropDown1,
+                                },
+                                anTo: {
+                                    hour: hours3,
+                                    minute: minutes3,
+                                    AMOrPM: selectedAmPmDropDown1,
+                                },
+                                subjectsCount: subjectDetails.length,
+                                labsCount: labDetails.length,
+                                subjectDetails: [...subjectDetails],
+                                labDetails: [...labDetails],
+                                createdTime:getDateTime()
+                            }
+                            console.log(data)
+                            CreateScheduleData.push(data)
+                        }}
+                    />
                 </div>
+                <CreateSchedulePopUp
+                    branch={selectedBranch.branch}
+                    dep={selectedDep}
+                    sem={sem}
+                    openPopUp={openPopUp}
+                />
             </StyledMainContainer>
         </>
     )
@@ -257,7 +279,9 @@ const CreateSchedule = () => {
 export default CreateSchedule
 
 const StyledMainContainer = styled.div`
+    position: relative;
     padding: 35px 122px 89px;
+    z-index: 1;
 `
 const StyledArrow = styled.img`
     height: 24px;
@@ -282,66 +306,6 @@ const StyledInputText1 = styled(TextComponent)`
     color: #000000;
     margin-bottom: 12px;
     margin-right: 30%;
-`
-const StyledInputText2 = styled(TextComponent)`
-    margin-top: 21px;
-    margin-right: 37px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-`
-const StyledInput2 = styled(InputComponent)`
-    background: #ffffff;
-    border: 1px solid #e8e8e8;
-    border-radius: 5px;
-    padding: 17px 0px 17px 16px;
-    margin-right: 30px;
-    width: 5%;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    color: #000000;
-`
-const StyledInputText2_1 = styled(TextComponent)`
-    margin-top: 21px;
-    margin-right: 37px;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-`
-const StyledInputText2_2 = styled(TextComponent)`
-    margin-top: 21px;
-    margin-right: 56px;
-    color: #767676;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 22px;
-`
-const StyledCheckBox = styled(InputComponent)`
-    margin-top: 10px;
-    margin-right: 13px;
-    color: #767676;
-`
-const StyledSubjectLabel = styled(TextComponent)`
-    background: #f2f2f2;
-    border-radius: 5px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    color: #aba9ae;
-    padding: 20px 0px 20px 12.8px;
-    margin-top: 34px;
-`
-
-const FNANButton = styled(Button)`
-    border: 1px solid #5375e2;
-    border-radius: 5px;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 22px;
-    padding: 21px 22px;
-    color: #5375e2;
-    margin-top: 30px;
 `
 const StyledInputText3 = styled(StyledInputText1)`
     margin-bottom: 30px;
