@@ -73,7 +73,7 @@ const CreateNewScheduleButton = styled(Button)`
     display: flex;
     align-items: center;
     color: #5375e2;
-    padding: 10.5px 24.5px;
+    padding: 10.5px 23.5px;
     margin-left: 15%;
     margin-right: 30px;
     margin-top: 55px;
