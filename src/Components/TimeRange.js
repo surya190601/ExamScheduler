@@ -41,12 +41,14 @@ const TimeRange = (props) => {
                     onChange={(event) => {
                         handleChangeHour(event)
                     }}
+                    max = "12"
                 />
                 <StyledInput2
                     type="number"
                     onChange={(event) => {
                         handleChangeMinute(event)
                     }}
+                    max = "59"
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown
@@ -61,12 +63,14 @@ const TimeRange = (props) => {
                     onChange={(event) => {
                         handleChangeHour1(event)
                     }}
+                    max = "12"
                 />
                 <StyledInput2
                     type="number"
                     onChange={(event) => {
                         handleChangeMinute1(event)
                     }}
+                    max = "59"
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown

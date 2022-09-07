@@ -44,4 +44,7 @@ module.exports = {
     clean: true,
     publicPath: "/",
   },
+  devServer: {
+    historyApiFallback: true,
+  },
 };

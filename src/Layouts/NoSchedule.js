@@ -26,7 +26,7 @@ export default NoSchedule;
 const NoScheduleImageText = styled(TextComponent)`
   position: absolute;
   left: 34.4%;
-  top: 66.4%;
+  top: 67.4%;
   font-weight: 600;
   font-size: 16px;
   line-height: 130%;
