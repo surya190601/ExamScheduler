@@ -203,7 +203,6 @@ const FNANButton = styled(Button)`
     padding: 21px 22px;
     color: #5375e2;
     margin-top: 30px;
-    width:14%
 `
 
 const FNANButtonActive = styled(Button)`
