@@ -26,6 +26,7 @@ const CreateSchedulePopUp = (props) => {
                 <div style={{ display: 'flex', flexDirection: 'row' }}>
                     <Link
                         to="/CreateSchedulePage"
+                        onClick={() => window.location.reload()}
                         style={{ textDecoration: 'none',width: "35%"}}
                     >
                         <CreateNewScheduleButton label="Create New schedule" />

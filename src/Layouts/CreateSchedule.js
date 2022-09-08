@@ -63,6 +63,10 @@ const CreateSchedule = () => {
     // PopUp
     const [openPopUp, setOpenPopUp] = useState(false)
 
+    //CheckBox
+    const [setAllForFN, setSetAllForFN] = useState(false)
+    const [setAllForAN, setSetAllForAN] = useState(false)
+
     const setBranchs = (option) => {
         setSelectedBranch(option)
         setdeps(option?.deps)
@@ -76,10 +80,12 @@ const CreateSchedule = () => {
         setSelectedExamType(FormData?.[option]?.[0]?.[0]?.ExamType)
     }
 
-    const setexamTypes = (option) => {
+    const setexamTypes = async (option) => {
         setSelectedExamType(option.ExamType)
-        setSubjectDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.subjects)
-        setLabDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.labs)
+        await setSubjectDetails(
+            FormData?.[selectedDep]?.[sem - 1]?.[0]?.subjects
+        )
+        await setLabDetails(FormData?.[selectedDep]?.[sem - 1]?.[0]?.labs)
     }
 
     const getDateTime = () => {
@@ -89,13 +95,13 @@ const CreateSchedule = () => {
         let day = now.getDate()
         let hour = now.getHours()
         let minute = now.getMinutes()
-        let amPm = hour >= 12 ? 'PM' : 'AM';
+        let amPm = hour >= 12 ? 'PM' : 'AM'
 
         month = month.toString().length == 1 ? `0${month}` : `${month}`
         day = day.toString().length == 1 ? `0${day}` : `${day}`
-        hour = hour % 12;
-        hour = hour ? hour : 12;
-        minute = minute < 10 ? `0${minute}` : `${minute}`;
+        hour = hour % 12
+        hour = hour ? hour : 12
+        minute = minute < 10 ? `0${minute}` : `${minute}`
         let dateTime = `${day}/${month}/${year} ${hour}:${minute}${amPm}`
         return dateTime
     }
@@ -110,11 +116,11 @@ const CreateSchedule = () => {
                         marginBottom: '20px',
                     }}
                 >
-                    <Link to = "/" style={{ textDecoration: 'none' }}>
-                    <StyledArrow
-                        src="https://i.ibb.co/RBRPtj0/Vector-Arrow.png"
-                        alt="Arrow-Back"
-                    />
+                    <Link to="/" style={{ textDecoration: 'none' }}>
+                        <StyledArrow
+                            src="https://i.ibb.co/RBRPtj0/Vector-Arrow.png"
+                            alt="Arrow-Back"
+                        />
                     </Link>
                     <StyledTitle>Create new schedule</StyledTitle>
                 </div>
@@ -172,6 +178,12 @@ const CreateSchedule = () => {
                         setMinute={setMinute}
                         setHour1={setHour1}
                         setMinute1={setMinute1}
+                        setSetAllForFNAN={setSetAllForFN}
+                        setAllForFNAN={setAllForFN}
+                        subjectDetails={subjectDetails}
+                        setSubjectDetails={setSubjectDetails}
+                        labDetails={labDetails}
+                        setLabDetails={setLabDetails}
                     />
                     <TimeRange
                         AMPMOption={AMPMOption}
@@ -182,6 +194,12 @@ const CreateSchedule = () => {
                         setMinute={setMinute2}
                         setHour1={setHour3}
                         setMinute1={setMinute3}
+                        setSetAllForFNAN={setSetAllForAN}
+                        setAllForFNAN={setAllForAN}
+                        subjectDetails={subjectDetails}
+                        setSubjectDetails={setSubjectDetails}
+                        labDetails={labDetails}
+                        setLabDetails={setLabDetails}
                     />
                     <div
                         style={{
@@ -207,6 +225,8 @@ const CreateSchedule = () => {
                         details={subjectDetails}
                         setDetails={setSubjectDetails}
                         label="Subject"
+                        setSetAllForAN={setSetAllForAN}
+                        setSetAllForFN={setSetAllForFN}
                     />
                     <div>
                         <StyledInputText3 label="Labs" />
@@ -215,6 +235,8 @@ const CreateSchedule = () => {
                         details={labDetails}
                         setDetails={setLabDetails}
                         label="Lab"
+                        setSetAllForAN={setSetAllForAN}
+                        setSetAllForFN={setSetAllForFN}
                     />
                 </StyledWrapper>
 
@@ -258,7 +280,8 @@ const CreateSchedule = () => {
                                 labsCount: labDetails.length,
                                 subjectDetails: [...subjectDetails],
                                 labDetails: [...labDetails],
-                                createdTime:getDateTime()
+                                createdTime: getDateTime(),
+                                isAlloted: false,
                             }
                             console.log(data)
                             CreateScheduleData.push(data)
