@@ -29,6 +29,7 @@ const StyledCreateButton = styled.div`
     padding: 8px 23px 8px 23px;
     display: flex;
     flex-direction: row;
+    width: 192px;
   `;
   const StyledIconButton = styled.img`
     margin-top: 6.49px;

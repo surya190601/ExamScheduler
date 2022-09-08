@@ -1,5 +1,4 @@
 import React from 'react'
-
 import LandingPage from './Pages/LandingPage'
 import CreateSchedulePage from './Pages/CreateSchedulePage'
 import AllocationPage from './Pages/AllocationPage'
@@ -12,8 +11,6 @@ const App = () => {
                 <Routes>
                   <Route path="/" element={<LandingPage/>}/>
                   <Route path="/CreateSchedulePage" element={<CreateSchedulePage/>}/>
-                    {/* <CreateSchedulePage /> */}
-                    {/* <AllocationPage/> */}
                 </Routes>
             </BrowserRouter>
         </>
