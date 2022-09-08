@@ -5,45 +5,58 @@ import EditIcon from '../Assets/svg/EditIcon'
 import DeleteIcon from '../Assets/svg/DeleteIcon'
 import CardLabelText from './CardLabelText'
 import Button from './Button'
+import { Link } from 'react-router-dom'
 
 const Card = (props) => {
-    const { cardDetails, setCardDetails,allotedCheckButton, setAllotedCheckButton,selectedOption } = props
+    const {
+        cardDetails,
+        setCardDetails,
+        allotedCheckButton,
+        setAllotedCheckButton,
+        selectedOption,
+    } = props
     let clonedArray = [...cardDetails]
-    const onDelete = (item, index) => {
+    const onDelete = (item) => {
         const tempCardDetails = [...cardDetails]
+        let index = tempCardDetails.findIndex(x => x ===item);
         tempCardDetails.splice(index, 1)
         setCardDetails(tempCardDetails)
         clonedArray = [...tempCardDetails]
     }
     const filteringOnlyTheAllotedCard = (allotedCheckButton) => {
-      if (allotedCheckButton){
-        let tempArray = clonedArray.filter(item => item.isAlloted === true);
-        clonedArray = [...tempArray]
-      }
+        if (allotedCheckButton) {
+            let tempArray = clonedArray.filter(
+                (item) => item.isAlloted === true
+            )
+            clonedArray = [...tempArray]
+        }
     }
     const filteringDataUsingExamType = (selectedOption) => {
-      if (selectedOption === "Semester Exam"){
-        let tempArray = clonedArray.filter(item => item.examType === 'Semester');
-        clonedArray = [...tempArray]
-      }
-      else if (selectedOption === 'Model Exam'){
-        let tempArray = clonedArray.filter(item => item.examType === 'Model');
-        clonedArray = [...tempArray]
-      }
-      else if (selectedOption === 'Internal Exam'){
-        let tempArray = clonedArray.filter(item => item.examType === 'Internal');
-        clonedArray = [...tempArray]
-      }
+        if (selectedOption === 'Semester Exam') {
+            let tempArray = clonedArray.filter(
+                (item) => item.examType === 'Semester'
+            )
+            clonedArray = [...tempArray]
+        } else if (selectedOption === 'Model Exam') {
+            let tempArray = clonedArray.filter(
+                (item) => item.examType === 'Model'
+            )
+            clonedArray = [...tempArray]
+        } else if (selectedOption === 'Internal Exam') {
+            let tempArray = clonedArray.filter(
+                (item) => item.examType === 'Internal'
+            )
+            clonedArray = [...tempArray]
+        }
     }
-    const onUpdateArray = (selectedOption,allotedCheckButton) => {
-      if (selectedOption)
-      filteringDataUsingExamType (selectedOption)
-      else
-      filteringOnlyTheAllotedCard(allotedCheckButton)
+    const onUpdateArray = (selectedOption, allotedCheckButton) => {
+        if (selectedOption) filteringDataUsingExamType(selectedOption)
+        else filteringOnlyTheAllotedCard(allotedCheckButton)
     }
+    // console.log({data: JSON.stringify(clonedArray[0])});
     return (
         <>
-        {onUpdateArray(selectedOption,allotedCheckButton)}
+            {onUpdateArray(selectedOption, allotedCheckButton)}
             {clonedArray.map((item, index) => (
                 <StyledCardWrapper isAlloted={item.isAlloted}>
                     <StyledContainer>
@@ -66,11 +79,13 @@ const Card = (props) => {
                                     flexDirection: 'row',
                                 }}
                             >
-                                <EditIcon onClick={(event) => {}} />
+                                <Link to="/EditSchedulePage" state={{data: JSON.stringify(item)}}>
+                                    <EditIcon />
+                                </Link>
                                 <DeleteIcon
                                     marginLeft="20px"
-                                    onClick={(event) => {
-                                        onDelete(item, index)
+                                    onClick={() => {
+                                        onDelete(item)
                                     }}
                                 />
                             </div>

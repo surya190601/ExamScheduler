@@ -3,8 +3,6 @@ import styled from 'styled-components'
 import Card from '../Components/Card'
 import CreateCard from '../Components/CreateCard'
 import Filter from '../Components/Filter'
-import InputComponent from '../Components/InputComponent'
-import TextComponent from '../Components/TextComponent'
 import { CreateScheduleData } from '../Common/data/CreateScheduleData'
 import { useState } from 'react'
 const WithSchedule = () => {

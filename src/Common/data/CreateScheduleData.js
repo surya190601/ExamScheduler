@@ -129,7 +129,7 @@ export const CreateScheduleData = [
     },
     {
         branch: 'B.TECH',
-        department: 'IT',
+        department: 'CSE',
         semester: '3',
         examType: 'Semester',
         fnFrom: { hour: '9', minute: '30', AMOrPM: 'AM' },
