@@ -15,12 +15,11 @@ const Card = (props) => {
         setCardDetails(tempCardDetails)
         clonedArray = [...tempCardDetails]
     }
-    const onUpdateArray = (allotedCheckButton) => {
+    const filteringOnlyTheAllotedCard = (allotedCheckButton) => {
       if (allotedCheckButton){
         let tempArray = clonedArray.filter(item => item.isAlloted === true);
         clonedArray = [...tempArray]
       }
-      else clonedArray = [...cardDetails]
     }
     const filteringDataUsingExamType = (selectedOption) => {
       if (selectedOption === "Semester Exam"){
@@ -35,12 +34,16 @@ const Card = (props) => {
         let tempArray = clonedArray.filter(item => item.examType === 'Internal');
         clonedArray = [...tempArray]
       }
-      else clonedArray = [...cardDetails]
+    }
+    const onUpdateArray = (selectedOption,allotedCheckButton) => {
+      if (selectedOption)
+      filteringDataUsingExamType (selectedOption)
+      else
+      filteringOnlyTheAllotedCard(allotedCheckButton)
     }
     return (
         <>
-        {allotedCheckButton ? onUpdateArray(allotedCheckButton):onUpdateArray(allotedCheckButton)}
-        {filteringDataUsingExamType (selectedOption)}
+        {onUpdateArray(selectedOption,allotedCheckButton)}
             {clonedArray.map((item, index) => (
                 <StyledCardWrapper isAlloted={item.isAlloted}>
                     <StyledContainer>

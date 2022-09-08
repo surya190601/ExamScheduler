@@ -11,7 +11,6 @@ const WithSchedule = () => {
     const [cardDetails, setCardDetails] = useState(CreateScheduleData)
     const [allotedCheckButton, setAllotedCheckButton] = useState(false)
     const [selectedOption, setSelectedOption] = useState('')
-    console.log(selectedOption)
     return (
         <>
             <StyledMainContainer>
