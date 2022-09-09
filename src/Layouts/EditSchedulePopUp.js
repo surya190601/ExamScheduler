@@ -21,17 +21,10 @@ const CreateSchedulePopUp = (props) => {
                     </Link>
                 </div>
                 <Text2
-                    label={`${branch} ${dep} SEM${sem} schedule was successfully created.`}
+                    label={`${branch} ${dep} SEM${sem} schedule was successfully edited.`}
                 />
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <Link
-                        to="/CreateSchedulePage"
-                        onClick={() => window.location.reload()}
-                        style={{ textDecoration: 'none', width: '35%' }}
-                    >
-                        <CreateNewScheduleButton label="Create New schedule" />
-                    </Link>
-                    <AllocateScheduleButton label="Allocate Schedule" />
+                <div style={{ display: 'flex', flexDirection: 'row' ,marginLeft: '251px' }}>
+                    <AllocateScheduleButton label="Edit Allocation" />
                 </div>
             </OverLay>
         </>

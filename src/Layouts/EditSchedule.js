@@ -12,7 +12,7 @@ import Button from '../Components/Button'
 import { FormData } from '../Common/data/FormData'
 import SubjectLabComponent from '../Components/SubjectLabComponent'
 import TimeRange from '../Components/TimeRange'
-import CreateSchedulePopUp from './CreateSchedulePopUp'
+import EditSchedulePopUp from './EditSchedulePopUp'
 import { CreateScheduleData } from '../Common/data/CreateScheduleData'
 import { Link } from 'react-router-dom'
 const EditSchedule = () => {
@@ -300,7 +300,7 @@ const EditSchedule = () => {
                         }}
                     />
                 </div>
-                <CreateSchedulePopUp
+                <EditSchedulePopUp
                     branch={selectedBranch.branch}
                     dep={selectedDep}
                     sem={sem}
