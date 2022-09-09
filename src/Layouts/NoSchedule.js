@@ -6,7 +6,7 @@ import TextComponent from "../Components/TextComponent";
 
 const NoSchedule = () => {
   return (
-    <div style={{ padding: "5.98639455782313vw 34.21768707482993vw 6.80952380952381vw" ,position:'relative'}}>
+    <div style={{ padding: "5.98639455782313vw 34.21768707482993vw 8.80952380952381vw" ,position:'relative'}}>
       <NoScheduleImage
         src="https://i.ibb.co/m6n1ZR4/Events-rafiki-1.png"
         alt="Events-rafiki-1"
@@ -26,7 +26,7 @@ export default NoSchedule;
 const NoScheduleImageText = styled(TextComponent)`
   position: absolute;
   left: 34.4%;
-  top: 66.4%;
+  top: 65.4%;
   font-weight: 600;
   font-size: 16px;
   line-height: 130%;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import CustomDropDown from '../Components/CustomDropDown'
 import Wrapper from '../Components/Wrapper'
@@ -11,41 +12,44 @@ import Button from '../Components/Button'
 import { FormData } from '../Common/data/FormData'
 import SubjectLabComponent from '../Components/SubjectLabComponent'
 import TimeRange from '../Components/TimeRange'
-import CreateSchedulePopUp from './CreateSchedulePopUp'
+import EditSchedulePopUp from './EditSchedulePopUp'
 import { CreateScheduleData } from '../Common/data/CreateScheduleData'
 import { Link } from 'react-router-dom'
-
-const CreateSchedule = () => {
+const EditSchedule = () => {
+    const location = useLocation()
+    const { item, index } = location.state
+    const data = JSON.parse(item)
     // branches
     const [branch, setBranch] = useState(FormData?.branchanddep || [])
+    console.log(data?.branch)
     const [selectedBranch, setSelectedBranch] = useState(branch[0] || {})
 
     // deps
     const [deps, setdeps] = useState(selectedBranch?.deps || [])
-    const [selectedDep, setSelectedDep] = useState('--Select--')
+    const [selectedDep, setSelectedDep] = useState(data?.department)
 
     //ExamType
     const [ExamType, setExamType] = useState([])
-    const [selectedExamType, setSelectedExamType] = useState('--Select--')
+    const [selectedExamType, setSelectedExamType] = useState(data?.examType)
 
     //Labs Details
-    const [labDetails, setLabDetails] = useState([])
+    const [labDetails, setLabDetails] = useState(data?.labDetails)
 
     //Subject Details
-    const [subjectDetails, setSubjectDetails] = useState([])
+    const [subjectDetails, setSubjectDetails] = useState(data?.subjectDetails)
 
     // Hours And Minutes Details
-    const [hours, setHour] = useState('')
-    const [minutes, setMinute] = useState('')
-    const [hours1, setHour1] = useState('')
-    const [minutes1, setMinute1] = useState('')
-    const [hours2, setHour2] = useState('')
-    const [minutes2, setMinute2] = useState('')
-    const [hours3, setHour3] = useState('')
-    const [minutes3, setMinute3] = useState('')
+    const [hours, setHour] = useState(data?.fnFrom?.hour)
+    const [minutes, setMinute] = useState(data?.fnFrom?.minute)
+    const [hours1, setHour1] = useState(data?.fnTo?.hour)
+    const [minutes1, setMinute1] = useState(data?.fnTo?.minute)
+    const [hours2, setHour2] = useState(data?.anFrom?.hour)
+    const [minutes2, setMinute2] = useState(data?.anFrom.minute)
+    const [hours3, setHour3] = useState(data?.anTo?.hour)
+    const [minutes3, setMinute3] = useState(data?.anTo?.minute)
 
     //Semester
-    const [sem, setsem] = useState('')
+    const [sem, setsem] = useState(data.semester)
     const handleChangeInSem = (event) => {
         setsem(event.target.value)
         setExamType(FormData?.[selectedDep]?.[event.target.value - 1])
@@ -54,10 +58,10 @@ const CreateSchedule = () => {
     //AMPMOption
     let AMPMOption = ['AM', 'PM']
     const [selectedAmPmDropDown, setSelectedAmPmDropDown] = useState(
-        AMPMOption[0]
+        data?.fnFrom.AMOrPM
     )
     const [selectedAmPmDropDown1, setSelectedAmPmDropDown1] = useState(
-        AMPMOption[0]
+        data?.anFrom.AMOrPM
     )
 
     // PopUp
@@ -122,7 +126,7 @@ const CreateSchedule = () => {
                             alt="Arrow-Back"
                         />
                     </Link>
-                    <StyledTitle>Create new schedule</StyledTitle>
+                    <StyledTitle>Edit schedule</StyledTitle>
                 </div>
                 <StyledWrapper>
                     <div
@@ -178,6 +182,10 @@ const CreateSchedule = () => {
                         setMinute={setMinute}
                         setHour1={setHour1}
                         setMinute1={setMinute1}
+                        Hour={hours}
+                        Minute={minutes}
+                        Hour1={hours1}
+                        Minute1={minutes1}
                         setSetAllForFNAN={setSetAllForFN}
                         setAllForFNAN={setAllForFN}
                         subjectDetails={subjectDetails}
@@ -194,6 +202,10 @@ const CreateSchedule = () => {
                         setMinute={setMinute2}
                         setHour1={setHour3}
                         setMinute1={setMinute3}
+                        Hour={hours2}
+                        Minute={minutes2}
+                        Hour1={hours3}
+                        Minute1={minutes3}
                         setSetAllForFNAN={setSetAllForAN}
                         setAllForFNAN={setAllForAN}
                         subjectDetails={subjectDetails}
@@ -251,7 +263,7 @@ const CreateSchedule = () => {
                         label="Save"
                         onClick={() => {
                             setOpenPopUp(true)
-                            const data = {
+                            const dataFromUser = {
                                 branch: selectedBranch.branch,
                                 department: selectedDep,
                                 semester: sem,
@@ -283,12 +295,12 @@ const CreateSchedule = () => {
                                 createdTime: getDateTime(),
                                 isAlloted: false,
                             }
-                            console.log(data)
-                            CreateScheduleData.push(data)
+                            console.log(dataFromUser)
+                            CreateScheduleData.splice(index, 1, dataFromUser);
                         }}
                     />
                 </div>
-                <CreateSchedulePopUp
+                <EditSchedulePopUp
                     branch={selectedBranch.branch}
                     dep={selectedDep}
                     sem={sem}
@@ -299,8 +311,7 @@ const CreateSchedule = () => {
     )
 }
 
-export default CreateSchedule
-
+export default EditSchedule
 const StyledMainContainer = styled.div`
     position: relative;
     padding: 35px 122px 89px;

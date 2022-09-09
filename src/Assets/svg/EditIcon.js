@@ -1,9 +1,9 @@
 import React from 'react'
 
 export default function EditIcon(props) {
-    const { onClick = () => null, marginLeft = 0, marginRight = 0 } = props
+    const { onClick = () => null} = props
     return (
-        <div onClick={onClick} style={{ marginLeft, marginRight }}>
+        <div onClick={onClick}>
             <svg
                 width="20"
                 height="20"

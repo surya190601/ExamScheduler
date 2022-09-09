@@ -20,18 +20,13 @@ const CreateSchedulePopUp = (props) => {
                         <Text1 label="Go home" />
                     </Link>
                 </div>
+                <div style={{ display: 'flex', flexDirection: 'row' ,justifyContent: "center"}}>
                 <Text2
-                    label={`${branch} ${dep} SEM${sem} schedule was successfully created.`}
+                    label={`${branch} ${dep} SEM${sem} schedule was successfully edited.`}
                 />
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <Link
-                        to="/CreateSchedulePage"
-                        onClick={() => window.location.reload()}
-                        style={{ textDecoration: 'none', width: '35%' }}
-                    >
-                        <CreateNewScheduleButton label="Create New schedule" />
-                    </Link>
-                    <AllocateScheduleButton label="Allocate Schedule" />
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'row' ,justifyContent: "center"}}>
+                    <AllocateScheduleButton label="Edit Allocation" />
                 </div>
             </OverLay>
         </>
@@ -42,7 +37,7 @@ export default CreateSchedulePopUp
 
 const OverLay = styled.div`
     width: 54%;
-    padding: 1.5% 2.6% 6% 12.6%;
+    padding: 1.5% 1.6% 6% 7.6%;
     box-shadow: 0px 3px 5px 0px rgba(50, 50, 50, 0.45);
     position: fixed;
     top: 30%;

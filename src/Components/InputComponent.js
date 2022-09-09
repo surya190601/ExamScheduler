@@ -8,6 +8,8 @@ const InputComponent = (props) => {
         placeholder,
         label,
         onChange,
+        max,
+        checked,
     } = props
     return (
         <>
@@ -21,8 +23,9 @@ const InputComponent = (props) => {
                     placeholder={placeholder}
                     className={className}
                     onChange={onChange}
-                    min="0"
-                    max="12"
+                    min="1"
+                    max={max}
+                    checked={checked}
                 />
             )}
         </>

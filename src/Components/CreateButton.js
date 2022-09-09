@@ -26,9 +26,10 @@ const StyledCreateButton = styled.div`
     font-size: 20px;
     line-height: 27px;
     color: #ffffff;
-    padding: 8px 23px 15px 21px;
+    padding: 8px 23px 8px 23px;
     display: flex;
     flex-direction: row;
+    width: 192px;
   `;
   const StyledIconButton = styled.img`
     margin-top: 6.49px;
@@ -37,5 +38,5 @@ const StyledCreateButton = styled.div`
     object-fit: cover;
   `;
   const StyledTextButton = styled.div`
-    margin-left: 23px;
+    margin-left: 30px;
   `;

@@ -13,18 +13,79 @@ const TimeRange = (props) => {
         setMinute,
         setHour1,
         setMinute1,
+        setSetAllForFNAN,
+        setAllForFNAN,
+        subjectDetails,
+        labDetails,
+        setSubjectDetails,
+        setLabDetails,
+        Hour,
+        Minute,
+        Hour1,
+        Minute1,
     } = props
     const handleChangeHour = (event) => {
-        setHour(event.target.value);
+        setHour(event.target.value)
     }
     const handleChangeMinute = (event) => {
-        setMinute(event.target.value);
+        setMinute(event.target.value)
     }
     const handleChangeHour1 = (event) => {
-        setHour1(event.target.value);
+        setHour1(event.target.value)
     }
     const handleChangeMinute1 = (event) => {
-        setMinute1(event.target.value);
+        setMinute1(event.target.value)
+    }
+    const handleChangeCheckBox = (
+        event,
+        label,
+        subjectDetails,
+        setSubjectDetails,
+        labDetails,
+        setLabDetails
+    ) => {
+        let clonedArray = [...subjectDetails]
+        let clonedArray1 = [...labDetails]
+        if (label === 'FN') {
+            if (event.target.checked) {
+                clonedArray.map((item, index) => {
+                    clonedArray[index].isNoon = !(event.target.checked)
+                })
+                clonedArray1.map((item, index) => {
+                    clonedArray1[index].isNoon = !(event.target.checked)
+                })
+            }
+            else{
+                clonedArray.map((item, index) => {
+                    clonedArray[index].isNoon = ''
+                })
+                clonedArray1.map((item, index) => {
+                    clonedArray1[index].isNoon = ''
+                })
+            }
+            setSubjectDetails(clonedArray)
+            setLabDetails(clonedArray1)
+        }
+        else {
+            if (event.target.checked) {
+                clonedArray.map((item, index) => {
+                    clonedArray[index].isNoon = (event.target.checked)
+                })
+                clonedArray1.map((item, index) => {
+                    clonedArray1[index].isNoon = (event.target.checked)
+                })
+            }
+            else{
+                clonedArray.map((item, index) => {
+                    clonedArray[index].isNoon = ''
+                })
+                clonedArray1.map((item, index) => {
+                    clonedArray1[index].isNoon = ''
+                })
+            }
+            setSubjectDetails(clonedArray)
+            setLabDetails(clonedArray1)
+        }
     }
     return (
         <>
@@ -41,12 +102,16 @@ const TimeRange = (props) => {
                     onChange={(event) => {
                         handleChangeHour(event)
                     }}
+                    max="12"
+                    value = {Hour}
                 />
                 <StyledInput2
                     type="number"
                     onChange={(event) => {
                         handleChangeMinute(event)
                     }}
+                    max="59"
+                    value = {Minute}
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown
@@ -61,12 +126,16 @@ const TimeRange = (props) => {
                     onChange={(event) => {
                         handleChangeHour1(event)
                     }}
+                    max="12"
+                    value = {Hour1}
                 />
                 <StyledInput2
                     type="number"
                     onChange={(event) => {
                         handleChangeMinute1(event)
                     }}
+                    max="59"
+                    value = {Minute1}
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown
@@ -76,7 +145,21 @@ const TimeRange = (props) => {
                     />
                 </div>
                 <StyledInputText2_2 label="3 hours" />
-                <StyledCheckBox type="checkbox" value="AN" />
+                <StyledCheckBox
+                    type="checkbox"
+                    onChange={(event) => {
+                        setSetAllForFNAN(event.target.checked);
+                        handleChangeCheckBox(
+                            event,
+                            label,
+                            subjectDetails,
+                            setSubjectDetails,
+                            labDetails,
+                            setLabDetails
+                        )
+                    }}
+                    checked = {setAllForFNAN}
+                />
                 <StyledInputText2_2 label={'Set all for ' + label} />
             </div>
         </>
