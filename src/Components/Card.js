@@ -16,10 +16,12 @@ const Card = (props) => {
         selectedOption,
     } = props
     let clonedArray = [...cardDetails]
+    const getIndex = (item) =>{
+      return cardDetails.findIndex(x => x ===item);
+    }
     const onDelete = (item) => {
         const tempCardDetails = [...cardDetails]
-        let index = tempCardDetails.findIndex(x => x ===item);
-        tempCardDetails.splice(index, 1)
+        tempCardDetails.splice(getIndex(item), 1)
         setCardDetails(tempCardDetails)
         clonedArray = [...tempCardDetails]
     }
@@ -79,7 +81,7 @@ const Card = (props) => {
                                     flexDirection: 'row',
                                 }}
                             >
-                                <Link to="/EditSchedulePage" state={{data: JSON.stringify(item)}}>
+                                <Link to="/EditSchedulePage" state={{item: JSON.stringify(item),index:getIndex(item)}}>
                                     <EditIcon />
                                 </Link>
                                 <DeleteIcon

@@ -34,7 +34,7 @@ export const CreateScheduleData = [
                 date: '2022-08-26',
             },
             {
-                code: '19CTR105',
+                code: '19CTR167',
                 name: 'Microcontrollers',
                 isNoon: false,
                 date: '2022-08-29',
@@ -60,8 +60,8 @@ export const CreateScheduleData = [
                 date: '2022-08-07',
             },
         ],
-        createdTime: "01/08/2022 11:00AM",
-        isAlloted: false
+        createdTime: '01/08/2022 11:00AM',
+        isAlloted: false,
     },
     {
         branch: 'B.TECH',
@@ -124,8 +124,8 @@ export const CreateScheduleData = [
                 date: '2022-08-07',
             },
         ],
-        createdTime: "01/08/2022 11:00AM",
-        isAlloted: true
+        createdTime: '01/08/2022 11:00AM',
+        isAlloted: true,
     },
     {
         branch: 'B.TECH',
@@ -188,8 +188,8 @@ export const CreateScheduleData = [
                 date: '2022-08-07',
             },
         ],
-        createdTime: "01/08/2022 11:00AM",
-        isAlloted: true
+        createdTime: '01/08/2022 11:00AM',
+        isAlloted: true,
     },
     {
         branch: 'B.TECH',
@@ -252,8 +252,8 @@ export const CreateScheduleData = [
                 date: '2022-08-07',
             },
         ],
-        createdTime: "01/09/2022 11:00AM",
-        isAlloted: true
+        createdTime: '01/09/2022 11:00AM',
+        isAlloted: true,
     },
     {
         branch: 'B.TECH',
@@ -316,7 +316,7 @@ export const CreateScheduleData = [
                 date: '2022-08-07',
             },
         ],
-        createdTime: "01/08/2022 11:00AM",
-        isAlloted: false
+        createdTime: '01/08/2022 11:00AM',
+        isAlloted: false,
     },
 ]

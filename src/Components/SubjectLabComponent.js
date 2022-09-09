@@ -111,6 +111,7 @@ const SubjectLabComponent = (props) => {
                                     handleChangeDate(event, index)
                                     console.log(details)
                                 }}
+                                value={details[index].date}
                             />
                         </div>
 

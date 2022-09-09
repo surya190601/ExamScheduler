@@ -16,9 +16,13 @@ const TimeRange = (props) => {
         setSetAllForFNAN,
         setAllForFNAN,
         subjectDetails,
-        setSubjectDetails,
         labDetails,
+        setSubjectDetails,
         setLabDetails,
+        Hour,
+        Minute,
+        Hour1,
+        Minute1,
     } = props
     const handleChangeHour = (event) => {
         setHour(event.target.value)
@@ -99,6 +103,7 @@ const TimeRange = (props) => {
                         handleChangeHour(event)
                     }}
                     max="12"
+                    value = {Hour}
                 />
                 <StyledInput2
                     type="number"
@@ -106,6 +111,7 @@ const TimeRange = (props) => {
                         handleChangeMinute(event)
                     }}
                     max="59"
+                    value = {Minute}
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown
@@ -121,6 +127,7 @@ const TimeRange = (props) => {
                         handleChangeHour1(event)
                     }}
                     max="12"
+                    value = {Hour1}
                 />
                 <StyledInput2
                     type="number"
@@ -128,6 +135,7 @@ const TimeRange = (props) => {
                         handleChangeMinute1(event)
                     }}
                     max="59"
+                    value = {Minute1}
                 />
                 <div style={{ marginRight: '30px', width: '7%' }}>
                     <CustomDropDown
