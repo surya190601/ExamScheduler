@@ -44,11 +44,7 @@ module.exports = {
     clean: true,
     publicPath: "/",
   },
-<<<<<<< HEAD
-};
-=======
   devServer: {
     historyApiFallback: true,
   },
 };
->>>>>>> Testing
