@@ -158,6 +158,7 @@ const Card = (props) => {
                             }
                         />
                         {item.isAlloted ? (
+                            <Link to="/DetailDisplayPage" state={{item: JSON.stringify(item),index:getIndex(item)}}>
                             <div style={{ padding: '9px 0px' }}>
                                 <svg
                                     width="14"
@@ -172,6 +173,7 @@ const Card = (props) => {
                                     />
                                 </svg>
                             </div>
+                            </Link>
                         ) : (
                             <StyledAllocateButton label="Allocate" />
                         )}
@@ -209,7 +211,7 @@ const StyledText = styled(TextComponent)`
 `
 const StyledAllocatedContainer = styled.div`
     padding: ${(props) =>
-        props.isAlloted ? '13px 35px 15px 40px' : '11px 20px 10px 34px'};
+        props.isAlloted ? '13px 35px 15px 40px' : '11px 20px 11px 34px'};
     background: ${(props) => (props.isAlloted ? '#5375E2' : '#FFA500')};
     border-radius: 10px;
     display: flex;
@@ -229,7 +231,7 @@ const StyledAllocateButton = styled(Button)`
     background: #ffffff;
     border: 1px solid #5375e2;
     border-radius: 5px;
-    padding: 9.5px 7px 9.5px 19px;
+    padding: 9.5px 15px 9.5px 19px;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;

@@ -2,7 +2,7 @@ export const CreateScheduleData = [
     {
         branch: 'B.E',
         department: 'EEE',
-        semester: '1',
+        semester: '2',
         examType: 'Model',
         fnFrom: { hour: '9', minute: '30', AMOrPM: 'AM' },
         fnTo: { hour: '12', minute: '30', AMOrPM: 'AM' },
@@ -128,9 +128,9 @@ export const CreateScheduleData = [
         isAlloted: true,
     },
     {
-        branch: 'B.TECH',
-        department: 'CSE',
-        semester: '3',
+        branch: 'B.E',
+        department: 'EEE',
+        semester: '1',
         examType: 'Semester',
         fnFrom: { hour: '9', minute: '30', AMOrPM: 'AM' },
         fnTo: { hour: '12', minute: '30', AMOrPM: 'AM' },
